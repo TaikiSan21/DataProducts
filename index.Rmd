@@ -1,0 +1,84 @@
+---
+title: Visualising the Effect of Interaction Variables in Logistic Regression
+subtitle: A Learning Tool
+author: Taiki Sakai
+job: Top Secret Astronaut
+framework: io2012
+highlighter: highlight.js
+hitheme: tomorrow
+widgets: [mathjax]
+mode: selfcontained
+---
+
+## Introduction
+
+The purpose of this shiny app is to allow students to visualise the
+effect that an interaction term can have on a logistic regression. 
+Interaction terms are often added to regression, but it can be difficult
+to understand exactly what they are doing. The app is intended as a 
+learning tool to help students better understand how an interaction term
+will effect their regression model.
+
+---
+
+## Basic Logistic Regression
+
+```{r, echo=FALSE, results='hide'}
+library(ggplot2)
+library(gridExtra)
+```
+
+```{r, echo=FALSE, fig.width=12, fig.height=4.5}
+g <- ggplot( data.frame(x=c(-20,20)), aes(x)) +
+      stat_function(fun=function(x) exp(3+0.5*x)/(1+exp(3+0.5*x))) +
+      coord_cartesian(xlim=c(-20,20),ylim=c(-.1,1.1)) +
+      labs(title='log(odds) = 3+0.5x',y='Probability')
+
+f <- ggplot( data.frame(x=c(-20,20)), aes(x)) +
+      stat_function(fun=function(x) exp(-1+2*x)/(1+exp(-1+2*x))) +
+      coord_cartesian(xlim=c(-20,20),ylim=c(-.1,1.1)) +
+      labs(title='log(odds) = -1+2x',y='Probability')
+grid.arrange(g,f,ncol=2)
+```
+
+Recall that in basic logistic regression, our model takes the form of
+ $log(odds) = a + bx$. The graph on the left above shows the probability of a 
+positive result when our model is $log(odds) = 3+0.5x$. The graph on the right
+shows the result when our model is changed to $log(odds) = -1 + 2x$. The result
+of this change is easy for students to understand because it is the same as the
+change when graphing a regular line. Increasing the x coefficient increases the slope,
+and changing the intercept term shifts the graph.
+
+---
+
+## Logistic Regression with an Interaction Term
+
+```{r, echo=FALSE, fig.width=12, fig.height=4.5}
+h <- ggplot( data.frame(x=c(-20,20)), aes(x)) +
+      stat_function(fun=function(x) exp(2.5+1.5*x)/(1+exp(2.5+1.5*x))) +
+      coord_cartesian(xlim=c(-20,20),ylim=c(-.1,1.1)) +
+      labs(title='log(odds) = 3-0.5z+x(0.5+z)',y='Probability',x='z=1')
+
+j <- ggplot( data.frame(x=c(-20,20)), aes(x)) +
+      stat_function(fun=function(x) exp(3.5-0.5*x)/(1+exp(3.5-0.5*x))) +
+      coord_cartesian(xlim=c(-20,20),ylim=c(-.1,1.1)) +
+      labs(title='log(odds) = 3-0.5z+x(0.5+z)',y='Probability',x='z=-1')
+grid.arrange(h,j,ncol=2)
+```
+
+What happens if we add an interaction term, $z$? Now our function is
+$log(odds) = 3-0.5z+x(0.5+z)$. This is the same as the function used on the
+left graph in the previous slide with an interaction term, $z$, added. It is not
+as obvious what the coefficients of -0.5 and 1 mean, and of course the graph
+also depends on the value of $z$. Here we see the same function with $z$ values of
+1 and -1. 
+
+---
+
+## The App
+
+The shiny app will help students better understand the coefficients of the
+interaction term $z$ by allowing them to adjust the parameters and see
+the result of the change in real time. By playing around with different
+combinations of variable changes, students can get a better sense of
+how each piece affects the graph as a whole.
