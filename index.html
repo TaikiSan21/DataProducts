@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Visualising the Effect of Interaction Variables in Logistic Regression</title>
+  <meta charset="utf-8">
+  <meta name="description" content="Visualising the Effect of Interaction Variables in Logistic Regression">
+  <meta name="author" content="Taiki Sakai">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>Visualising the Effect of Interaction Variables in Logistic Regression</h1>
+    <h2>A Learning Tool</h2>
+    <p>Taiki Sakai<br/>Top Secret Astronaut</p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introduction</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The purpose of this shiny app is to allow students to visualise the
+effect that an interaction term can have on a logistic regression. 
+Interaction terms are often added to regression, but it can be difficult
+to understand exactly what they are doing. The app is intended as a 
+learning tool to help students better understand how an interaction term
+will effect their regression model.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Basic Logistic Regression</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-2-1.png" alt="plot of chunk unnamed-chunk-2"> </p>
+
+<p>Recall that in basic logistic regression, our model takes the form of
+ \(log(odds) = a + bx\). The graph on the left above shows the probability of a 
+positive result when our model is \(log(odds) = 3+0.5x\). The graph on the right
+shows the result when our model is changed to \(log(odds) = -1 + 2x\). The result
+of this change is easy for students to understand because it is the same as the
+change when graphing a regular line. Increasing the x coefficient increases the slope,
+and changing the intercept term shifts the graph.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Logistic Regression with an Interaction Term</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><img src="assets/fig/unnamed-chunk-3-1.png" alt="plot of chunk unnamed-chunk-3"> </p>
+
+<p>What happens if we add an interaction term, \(z\)? Now our function is
+\(log(odds) = 3-0.5z+x(0.5+z)\). This is the same as the function used on the
+left graph in the previous slide with an interaction term, \(z\), added. It is not
+as obvious what the coefficients of -0.5 and 1 mean, and of course the graph
+also depends on the value of \(z\). Here we see the same function with \(z\) values of
+1 and -1. </p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>The App</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The shiny app will help students better understand the coefficients of the
+interaction term \(z\) by allowing them to adjust the parameters and see
+the result of the change in real time. By playing around with different
+combinations of variable changes, students can get a better sense of
+how each piece affects the graph as a whole.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introduction'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Basic Logistic Regression'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Logistic Regression with an Interaction Term'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='The App'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
